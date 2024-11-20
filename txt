@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Close and Download</title>
+    <script>
+        // Function to trigger download and close the window
+        function initiate() {
+            // Create an empty file
+            const blob = new Blob([""], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "empty.txt";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Close the window after a short delay
+            setTimeout(() => {
+                window.close();
+            }, 100); // Adjust delay if needed
+        }
+    </script>
+</head>
+<body onload="initiate()">
+    <h1>If you see this, the browser didn't close automatically.</h1>
+    <p>This site downloads a file and closes itself.</p>
+</body>
+</html>
